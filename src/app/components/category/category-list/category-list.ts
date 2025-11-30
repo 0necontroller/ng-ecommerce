@@ -1,6 +1,7 @@
-import { Component, inject, signal } from '@angular/core'
-import { CategoryCard } from '../category-card/category-card'
+import { Component, inject } from '@angular/core'
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CategoryService } from '../../../services/category'
+import { CategoryCard } from '../category-card/category-card'
 
 @Component({
   selector: 'app-category-list',
@@ -11,5 +12,5 @@ import { CategoryService } from '../../../services/category'
 export class CategoryList {
   api = inject(CategoryService)
 
-  categories = signal(this.api.fetchCategories())
+  categories = toSignal(this.api.fetchCategories(),{initialValue: []})
 }

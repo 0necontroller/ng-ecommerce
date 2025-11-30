@@ -1,4 +1,8 @@
-<div class="flex flex-col gap-2">
-  <img [src]="category().image" alt="{{ category().name }}" class="w-48 h-48 object-cover rounded-md" />
-  <h3 class="font-medium">{{ category().name }}</h3>
+<div class="flex flex-col gap-2 cursor-pointer" (click)="navigateToCategory(category().id)">
+  <img
+    [src]="category().image"
+    alt="{{ category().name }}"
+    class="w-48 h-48 object-cover rounded-md hover:opacity-80 transition-opacity duration-500"
+  />
+  <h3 class="font-medium hover:underline underline-offset-2">{{ category().name }}</h3>
 </div>
