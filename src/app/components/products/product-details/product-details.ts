@@ -1,14 +1,14 @@
 import { Component, input } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import { IProduct } from '../../../models/product.model';
-import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-product-card',
-  imports: [RouterLink],
-  templateUrl: './product-card.html',
+  selector: 'app-product-details',
+  imports: [MatButton],
+  templateUrl: './product-details.html',
   styles: ``,
 })
-export class ProductCard {
+export class ProductDetails {
   productData = input.required<IProduct>()
 
 }
