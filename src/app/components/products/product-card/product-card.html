@@ -1,11 +1,11 @@
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4 h-full">
   <img
     [src]="productData().images[0]"
     alt="{{ productData().title }}"
     [routerLink]="['/product', productData().id]"
     class="w-full h-48 object-cover rounded-md hover:opacity-80 cursor-pointer"
   />
-  <div>
+  <div class="flex flex-col h-full">
     <h3 class="text-lg font-medium">$ {{ productData().price }}</h3>
     <h3
       [routerLink]="['/product', productData().id]"
@@ -13,6 +13,20 @@
     >
       {{ productData().title }}
     </h3>
-    <button matButton="filled" class="mt-2 w-full" (click)="addToCart(productData())">Add to Cart</button>
+    <div class="flex mt-auto items-center gap-2">
+      <button matButton="filled" class="mt-2 w-full" (click)="addToCart(productData())">
+        {{isInCart() ? 'Added! Go to Cart' : 'Buy Now'}}
+      </button>
+
+      <button
+        matIconButton
+        (click)="toggleWishlist(productData())"
+        class="flex items-center justify-center"
+      >
+        <mat-icon [class.filled]="isInWishlist()" [class.text-red-500]="isInWishlist()">
+          {{ isInWishlist() ? 'favorite' : 'favorite_border' }}
+        </mat-icon>
+      </button>
+    </div>
   </div>
 </div>

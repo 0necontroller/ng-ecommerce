@@ -36,7 +36,6 @@ export const EcommerceStore = signalStore(
   })),
   withMethods((state) => ({
     addToCart: signalMethod<IProduct>((product) => {
-
       const updatedCart = produce(state.cart(), (draft) => {
         if (!draft.find((item) => item.id === product.id)) {
           draft.push(product)
@@ -61,23 +60,13 @@ export const EcommerceStore = signalStore(
       })
     }),
 
-    addToWishlist: signalMethod<IProduct>((product) => {
+    toggleWishlist: signalMethod<IProduct>((product) => {
       const updatedWishlist = produce(state.wishlist(), (draft) => {
-        if (!draft.find((item) => item.id === product.id)) {
-          draft.push(product)
-        }
-      })
-
-      patchState(state, {
-        wishlist: updatedWishlist,
-      })
-    }),
-
-    removeFromWishlist: signalMethod<number>((productId) => {
-      const updatedWishlist = produce(state.wishlist(), (draft) => {
-        const index = draft.findIndex((item) => item.id === productId)
+        const index = draft.findIndex((item) => item.id === product.id)
         if (index !== -1) {
           draft.splice(index, 1)
+        } else {
+          draft.push(product)
         }
       })
 
