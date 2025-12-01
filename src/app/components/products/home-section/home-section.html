@@ -1,0 +1,9 @@
+<section class="{{ class() }}">
+  <h2 class="text-2xl font-semibold mb-4">{{ categoryProducts()[0].category.name }}</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    @for (product of categoryProducts(); track product.id){
+    <app-product-card [productData]="product" />
+    }
+  </div>
+</section>
