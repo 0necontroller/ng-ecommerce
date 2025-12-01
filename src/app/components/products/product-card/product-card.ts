@@ -1,4 +1,4 @@
-import { Router, RouterLink } from '@angular/router'
+import { RouterLink } from '@angular/router'
 import { MatIcon } from '@angular/material/icon'
 import { IProduct } from '../../../models/product.model'
 import { EcommerceStore } from '../../../store/ecommerce-store'
@@ -13,16 +13,14 @@ import { MatButton, MatIconButton } from '@angular/material/button'
 })
 export class ProductCard {
   private ecommerceStore = inject(EcommerceStore)
-  private router = inject(Router)
   productData = input.required<IProduct>()
 
   addToCart(product: IProduct) {
-    if (this.isInCart()) {
-      this.router.navigate(['/cart'])
-      return
-    }
-
     this.ecommerceStore.addToCart(product)
+  }
+
+  removeFromCart(productId: number) {
+    this.ecommerceStore.removeFromCart(productId)
   }
 
   toggleWishlist(product: IProduct) {

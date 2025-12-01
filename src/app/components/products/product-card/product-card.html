@@ -14,9 +14,15 @@
       {{ productData().title }}
     </h3>
     <div class="flex mt-auto items-center gap-2">
-      <button matButton="filled" class="mt-2 w-full" (click)="addToCart(productData())">
-        {{isInCart() ? 'Added! Go to Cart' : 'Buy Now'}}
-      </button>
+      @if (isInCart()) {
+        <button matButton="filled" class="mt-2 w-full capitalize" (click)="removeFromCart(productData().id)">
+          Remove from cart
+        </button>
+      } @else {
+        <button matButton="filled" class="mt-2 w-full" (click)="addToCart(productData())">
+          Buy Now
+        </button>
+      }
 
       <button
         matIconButton
