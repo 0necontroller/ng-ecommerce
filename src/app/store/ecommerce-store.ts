@@ -31,11 +31,12 @@ export const EcommerceStore = signalStore(
   },
   withState(initialState),
   withComputed((state) => ({
-    cartItemsCount: computed(() => state.cart.length),
-    wishlistItemsCount: computed(() => state.wishlist.length),
+    cartItemsCount: computed(() => state.cart().length),
+    wishlistItemsCount: computed(() => state.wishlist().length),
   })),
   withMethods((state) => ({
     addToCart: signalMethod<IProduct>((product) => {
+
       const updatedCart = produce(state.cart(), (draft) => {
         if (!draft.find((item) => item.id === product.id)) {
           draft.push(product)

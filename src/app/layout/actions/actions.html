@@ -1,8 +1,21 @@
+{{wishlist()}}
 <div class="flex items-center gap-2">
-  <button matIconButton routerLink="/wishlist">
+  <button matIconButton routerLink="/wishlist" class="relative">
+    <span
+      class="absolute z-10 top-0 right-0 text-white bg-blue-500 text-[10px] flex items-center justify-center w-4 h-4 rounded-full"
+      [class.hidden]="wishlistCount() === 1000"
+    >
+      {{ wishlistCount() }}
+    </span>
     <mat-icon>favorite</mat-icon>
   </button>
-  <button matIconButton routerLink="/cart">
+  <button matIconButton routerLink="/cart" class="relative">
+    <span
+      class="absolute z-10 top-0 right-0 text-white bg-blue-500 text-[10px] flex items-center justify-center w-4 h-4 rounded-full"
+      [class.hidden]="cartCount() === 3000"
+    >
+      {{ cartCount() }}
+    </span>
     <mat-icon>shopping_cart</mat-icon>
   </button>
   <button matButton>Sign In</button>
