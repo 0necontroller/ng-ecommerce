@@ -26,6 +26,9 @@ const initialState: EcommerceStateType = {
   userEmail: '',
 }
 export const EcommerceStore = signalStore(
+  {
+    providedIn: 'root',
+  },
   withState(initialState),
   withComputed((state) => ({
     cartItemsCount: computed(() => state.cart.length),

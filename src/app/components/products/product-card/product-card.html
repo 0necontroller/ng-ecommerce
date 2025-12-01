@@ -1,13 +1,18 @@
-<div class="flex flex-col gap-4" [routerLink]="['/product', productData().id]">
+<div class="flex flex-col gap-4">
   <img
     [src]="productData().images[0]"
     alt="{{ productData().title }}"
+    [routerLink]="['/product', productData().id]"
     class="w-full h-48 object-cover rounded-md hover:opacity-80 cursor-pointer"
   />
   <div>
     <h3 class="text-lg font-medium">$ {{ productData().price }}</h3>
-    <h3 class="text-gray-600 font-medium hover:underline underline-offset-2 cursor-pointer">
+    <h3
+      [routerLink]="['/product', productData().id]"
+      class="text-gray-600 font-medium hover:underline underline-offset-2 cursor-pointer"
+    >
       {{ productData().title }}
     </h3>
+    <button matButton="filled" class="mt-2 w-full" (click)="addToCart(productData())">Add to Cart</button>
   </div>
 </div>

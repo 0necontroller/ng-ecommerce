@@ -1,5 +1,5 @@
 <main class="px-4 md:px-8 lg:px-36 py-8">
-  <app-category-list />
-  <app-home-section class="mt-8" [categoryId]="4" />
-  <app-home-section class="mt-8" [categoryId]="3" />
+  <app-category-list [categories]="categories()" />
+  <app-home-section class="mt-8" [categoryId]="categories()[1].id" />
+  <app-home-section class="mt-8" [categoryId]="categories()[2].id" />
 </main>
