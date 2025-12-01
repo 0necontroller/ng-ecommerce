@@ -75,16 +75,21 @@ export const EcommerceStore = signalStore(
       })
     }),
 
-    setIsLoggedIn: signalMethod<boolean>((isLoggedIn) => {
-      patchState(state, {
-        userLoggedIn: isLoggedIn,
-      })
-    }),
-
     setUserInfo: signalMethod<{ name: string; email: string }>((userInfo) => {
       patchState(state, {
         userName: userInfo.name,
         userEmail: userInfo.email,
+        userLoggedIn: true,
+      })
+    }),
+
+    signOut: signalMethod(() => {
+      patchState(state, {
+        userName: '',
+        userEmail: '',
+        userLoggedIn: false,
+        cart: [],
+        wishlist: [],
       })
     }),
   })),

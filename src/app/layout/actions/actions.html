@@ -17,6 +17,16 @@
     </span>
     <mat-icon>shopping_cart</mat-icon>
   </button>
-  <button matButton>Sign In</button>
-  <button matButton="filled">Sign Up</button>
+  @if (isLoggedIn()) {
+    <button matIconButton [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="flex flex-col px-2">
+      <p class="py-2">Hello, {{ userName() }}</p>
+      <p>{{ userEmail() }}</p>
+      <button matButton (click)="signOut()">Sign out</button>
+    </mat-menu>
+  } @else {
+    <button matButton="filled" routerLink="/login">Sign In</button>
+  }
 </div>

@@ -1,0 +1,64 @@
+<main class="px-4 flex items-center justify-center bg-gray-100 p-4 md:px-8 lg:px-36 py-8 h-screen">
+  <mat-card class="w-full max-w-md shadow-2xl">
+    <mat-card-header class="text-center">
+      <mat-card-title class="text-2xl font-bold">Welcome Back</mat-card-title>
+      <mat-card-subtitle>Sign in to your account</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-6 space-y-5">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="john@example.com" />
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          @if (email?.invalid && email?.touched) {
+            <mat-error>Email is required and must be valid</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword() ? 'password' : 'text'"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePassword.set(!hidePassword())"
+          >
+            <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error>Password is required (min 6 characters)</mat-error>
+        </mat-form-field>
+
+        <div class="flex items-center justify-between">
+          <a routerLink="/login/#" class="text-sm text-primary hover:underline">
+            Forgot password?
+          </a>
+        </div>
+
+        <button
+          matButton="filled"
+          type="submit"
+          class="w-full text-lg py-3"
+          [disabled]="loginForm.invalid || isLoading()"
+        >
+          @if (isLoading()) {
+            <mat-spinner diameter="20" class="inline-block mr-2"></mat-spinner>
+          }
+          Sign In
+        </button>
+      </form>
+
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600">
+          Don't have an account?
+          <a routerLink="/login/#" class="font-medium text-primary hover:underline"> Sign up </a>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</main>

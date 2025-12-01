@@ -7,6 +7,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home'),
   },
   {
+    path: 'login',
+    loadComponent: () => import('./pages/auth/login/login'),
+  },
+  {
     path: 'category/:categoryId',
     loadComponent: () => import('./pages/products-grid/products-grid'),
   },
